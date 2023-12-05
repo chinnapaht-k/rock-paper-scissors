@@ -1,0 +1,13 @@
+.main {
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+
+
+input {
+    width:auto;
+    height:500px;
+    
+}
+
