@@ -8,12 +8,13 @@ function getComputerChoice(){ //Write a funtion that return rock paer or scissor
 
 
 function singleGame(playerSelection, computerSelection) {
+    
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     //Compare the hand of the computer and player and decide which player win
     if ((playerSelection == "rock" && computerSelection == "scissors") ||
     (playerSelection == "paper" && computerSelection == "rock")||
-    (playerSelection == "scissor" && computerSelection == "paper")) {
+    (playerSelection == "scissors" && computerSelection == "paper")) {
         console.log(`You win! ${playerSelection} beat ${computerSelection}`);
         return "win";
     }
@@ -28,33 +29,44 @@ function singleGame(playerSelection, computerSelection) {
 }
 
 
-function game(){
+function game(e){
     let userHand, computerHand ;
-    let win = 0, lose = 0;
-    for (let  i = 0; i < 5; i++){//loop the game 5 time
-        userHand = prompt("Rock, Paper or Scissors?: ") //take input from the player
-        computerHand = getComputerChoice();
-        console.log(`Computer choose : ${computerHand}`)
-        if (singleGame(userHand, computerHand) === "win"){
-            win += 1
-        }
-        else if (singleGame(userHand, computerHand) === "lose")
-            lose += 1
+   //loop the game 5 time
+    userHand = e.target.value;
+    computerHand = getComputerChoice();
+    alert(`Computer choose : ${computerHand}`)
+    if (singleGame(userHand, computerHand) === "win"){
+        winPlayer += 1
+        alert("You win!")
     }
-    if (win > lose){
-        console.log("You win! Congratulation!")
-    }
-    else if (lose > win){
-        console.log("Unforturnately you have lose. Please try again later :)")
+    else if (singleGame(userHand, computerHand) === "lose"){
+        winComputer += 1
+        alert("You Lose!")
     }
     else {
-        console.log("It is a tied. Good job!")
+        alert("Tied!")
     }
+    document.querySelector(".playerscore").textContent = winPlayer;
+    document.querySelector(".computerscore").textContent = winComputer;
+    if (winPlayer == 5){
+        alert("You win! Congratulation!")
+        winPlayer = 0 ; winComputer = 0;
+    }
+    else if (winComputer == 5){
+        alert("Unforturnately you have lose. Please try again later :)")
+        winPlayer = 0 ; winComputer = 0;
+    }
+    
         //keeptrack of the winning by the format of best of five ---> if win>=3 win if win=lose lose else lose
         
 }
 
 
+let winPlayer = 0 ;let winComputer = 0;
 
-game()
+const inputs = document.querySelectorAll("input")
+
+inputs.forEach((input) => {
+  input.addEventListener('click', game)
+});
 

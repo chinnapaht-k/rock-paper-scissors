@@ -11,3 +11,23 @@ input {
     
 }
 
+.scorecontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text {
+    font-size: 40px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.player, .computer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+}
